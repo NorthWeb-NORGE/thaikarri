@@ -1,0 +1,257 @@
+/* --- FELLES STILER OG VARIABLER --- */
+:root {
+  --bakgrunn: #fdfbf7; /* Varm, menneskelig kremhvit */
+  --tekst-mork: #2c2520; /* Myk mørkegrå/brun i stedet for hard svart */
+  --kontrast-rod: #9e2a2b; /* Dyp thairød (varm og innbydende) */
+  --kontrast-gull: #e09f3e; /* Varm gul/gull til detaljer */
+  --hvit: #ffffff;
+  --font-hoved: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-hoved);
+  background-color: var(--bakgrunn);
+  color: var(--tekst-mork);
+  line-height: 1.6;
+}
+
+/* --- NAVIGASJON (HEADER) --- */
+header {
+  background-color: var(--hvit);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px; /* Justert for å matche ny logohøyde */
+}
+
+/* Klikkbar logo-lenke og innpakning */
+.logo-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Mellomrom mellom bildelogo og tekst */
+}
+
+.header-logo {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-wrapper h1 {
+  font-size: 24px;
+  color: var(--kontrast-rod);
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-links a {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--tekst-mork);
+  font-weight: 700;
+  font-size: 16px;
+  padding: 10px 18px;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  transition:
+    color 0.3s,
+    background-color 0.3s,
+    border-color 0.3s,
+    transform 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--kontrast-rod);
+  border-color: var(--kontrast-rod);
+  background-color: #fbeeee;
+}
+
+/* Bestillingsknappen skal skille seg tydelig ut */
+.nav-links a.nav-cta {
+  background-color: var(--kontrast-rod);
+  color: var(--hvit);
+  border-color: var(--kontrast-rod);
+  box-shadow: 0 4px 12px rgba(158, 42, 43, 0.35);
+}
+
+.nav-links a.nav-cta:hover {
+  background-color: #7a2021;
+  border-color: #7a2021;
+  color: var(--hvit);
+  transform: translateY(-2px);
+}
+
+.nav-links a.nav-cta.active {
+  border-color: var(--kontrast-gull);
+}
+
+/* --- KNAPPER --- */
+.btn {
+  display: inline-block;
+  background-color: var(--kontrast-rod);
+  color: var(--hvit);
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background 0.3s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #7a2021;
+}
+
+/* --- FOOTER --- */
+footer {
+  background-color: var(--tekst-mork);
+  color: var(--bakgrunn);
+  padding: 40px 20px;
+  margin-top: 60px;
+}
+
+.footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.footer-section h3 {
+  color: var(--kontrast-gull);
+  margin-bottom: 15px;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #453c35;
+  font-size: 14px;
+}
+/* --- HAMBURGERMENY STANDARD (Skjult på PC) --- */
+header {
+  position: relative;
+  background-color: #fff;
+  z-index: 100;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger span {
+  width: 30px;
+  height: 3px;
+  background-color: #8b2626; /* Thaikarri-rødfargen */
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* --- MOBILVERSJON FOR ALLE SIDER --- */
+@media (max-width: 768px) {
+  /* Viser hamburger-knappen */
+  .hamburger {
+    display: flex;
+  }
+
+  /* Skjuler den vanlige menyen og gjør den om til en drop-down */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%; /* Legger seg rett under headeren */
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px 0;
+    text-align: center;
+    margin: 0;
+  }
+
+  /* Denne slår inn når knappen trykkes (takket være JavaScripten) */
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 8px 0;
+  }
+
+  .nav-links a {
+    min-width: 220px;
+  }
+
+  /* Fikser oppsettet på selve meny-siden */
+  .meny-layout {
+    flex-direction: column; /* Legger handlekurven UNDER maten på mobil */
+  }
+
+  .meny-grid {
+    grid-template-columns: 1fr; /* 1 kolonne med mat på små skjermer (ikke 2 eller 3) */
+    gap: 20px;
+  }
+
+  /* Fikser filter-knappene så de kan rulles bortover på mobil */
+  .filter-tags {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+
+  .filter-btn {
+    white-space: nowrap;
+  }
+}
+
+/* --- CREDITS --- */
+.northweb-credit {
+  color: #00e5ff;
+  text-decoration: none;
+  font-weight: bold;
+  transition:
+    text-shadow 0.3s ease,
+    color 0.3s ease;
+}
+
+.northweb-credit:hover {
+  color: #90f4ff;
+  text-shadow:
+    0 0 5px #00e5ff,
+    0 0 10px #00e5ff;
+}
